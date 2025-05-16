@@ -27,10 +27,11 @@
   text-align: center;
   padding: 20px 40px;
   font-size: 1.2rem;
-  color: #444;
+  color: #000000;
   max-width: 800px;
   margin: 40px auto;
   line-height: 1.5;
+  font-size: large;
 }
 
 @media (min-width: 600px) {
