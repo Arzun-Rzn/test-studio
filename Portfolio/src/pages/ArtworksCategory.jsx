@@ -16,14 +16,14 @@ const ArtworksCategory = () => {
   const [totalPages, setTotalPages] = useState(1);
   const limit = 12;
 
-  // ✅ Scroll to top on page change
+  // Scroll to top on page change
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
   }, [currentPage]);
 
-  // ✅ Fetch artworks
+  // Fetch artworks
   useEffect(() => {
     const fetchArtworks = async () => {
       try {
@@ -56,51 +56,56 @@ const ArtworksCategory = () => {
       <br />
       <br />
 
-      <div className="masonry-grid">
-        {artworks && Array.isArray(artworks) && artworks.length > 0 ? (
-          artworks.map((art, index) => (
-            <div key={art._id} className="masonry-item">
-              <img
-                src={art.imageUrl}
-                alt={art.title}
-                onClick={() => setOpenIndex(index)}
-              />
-              <div className="artwork-info">
-                <h3>{art.title}</h3>
-                <p>{art.description}</p>
+      {artworks && artworks.length > 0 ? (
+        <>
+          <div className="masonry-grid">
+            {artworks.map((art, index) => (
+              <div key={art._id} className="masonry-item">
+                <img
+                  src={art.imageUrl}
+                  alt={art.title}
+                  onClick={() => setOpenIndex(index)}
+                />
+                <div className="artwork-info">
+                  <h3>{art.title}</h3>
+                  <p>{art.description}</p>
+                </div>
               </div>
-            </div>
-          ))
-        ) : (
-          <p>
-            There are no artworks in this category. Will upload some soon. Meanwhile explore other categories.
-          </p>
-        )}
-      </div>
+            ))}
+          </div>
 
-      <div className="pagination-controls" style={{ marginTop: "20px", textAlign: "center" }}>
-        <button onClick={handlePrevPage} disabled={currentPage === 1}>
-          &lt; Prev
-        </button>
-        <span style={{ margin: "0 10px" }}>
-          Page {currentPage} of {totalPages}
-        </span>
-        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-          Next &gt;
-        </button>
-      </div>
+          <div
+            className="pagination-controls"
+            style={{ marginTop: "20px", textAlign: "center" }}
+          >
+            <button onClick={handlePrevPage} disabled={currentPage === 1}>
+              &lt; Prev
+            </button>
+            <span style={{ margin: "0 10px" }}>
+              Page {currentPage} of {totalPages}
+            </span>
+            <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+              Next &gt;
+            </button>
+          </div>
 
-      <Lightbox
-        open={openIndex !== -1}
-        close={() => setOpenIndex(-1)}
-        slides={artworks.map((art) => ({
-          src: art.imageUrl,
-        }))}
-        index={openIndex}
-        plugins={[Zoom, Captions]}
-        carousel={{ finite: true }}
-        controller={{ closeOnBackdropClick: true }}
-      />
+          <Lightbox
+            open={openIndex !== -1}
+            close={() => setOpenIndex(-1)}
+            slides={artworks.map((art) => ({
+              src: art.imageUrl,
+            }))}
+            index={openIndex}
+            plugins={[Zoom, Captions]}
+            carousel={{ finite: true }}
+            controller={{ closeOnBackdropClick: true }}
+          />
+        </>
+      ) : (
+        <p className="no-artworks-message">
+          There are no artworks in this category. Will upload some soon. Meanwhile explore other categories.
+        </p>
+      )}
     </main>
   );
 };
