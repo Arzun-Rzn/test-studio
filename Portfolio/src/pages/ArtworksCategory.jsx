@@ -28,7 +28,7 @@ const ArtworksCategory = () => {
     const fetchArtworks = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/artworks/category/${categorySlug}?page=${currentPage}&limit=${limit}`
+          `https://test-studio.onrender.com/api/artworks/category/${categorySlug}?page=${currentPage}&limit=${limit}`
         );
         setArtworks(res.data.artworks);
         setCurrentPage(res.data.currentPage);
