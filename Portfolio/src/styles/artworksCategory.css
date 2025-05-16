@@ -23,16 +23,15 @@
   column-gap: 1rem;
 }
 
-.no-artworks-message {
+/* .no-artworks-message {
   text-align: center;
   padding: 20px 40px;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   color: #000000;
   max-width: 800px;
   margin: 40px auto;
   line-height: 1.5;
-  font-size: large;
-}
+} */
 
 @media (min-width: 600px) {
   .masonry-grid {
@@ -116,4 +115,33 @@
 .pagination-controls button:disabled {
   background-color: #aaa;
   cursor: not-allowed;
+}
+
+.no-artworks-message {
+  text-align: center;
+  font-size: 1.8rem;
+  margin: 60px auto;
+  max-width: 800px;
+  padding: 0 20px;
+  line-height: 1.6;
+  color: #000000;
+}
+
+.loading-spinner {
+  margin: 60px auto;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #444;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

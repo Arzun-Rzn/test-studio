@@ -13,20 +13,20 @@ const ArtworksCategory = () => {
   const [artworks, setArtworks] = useState([]);
   const [openIndex, setOpenIndex] = useState(-1);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const [totalPages, setTotalPages] = useState(1);
   const limit = 12;
 
-  // Scroll to top on page change
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
   }, [currentPage]);
 
-  // Fetch artworks
   useEffect(() => {
     const fetchArtworks = async () => {
       try {
+        setLoading(true);
         const res = await axios.get(
           `https://test-studio.onrender.com/api/artworks/category/${categorySlug}?page=${currentPage}&limit=${limit}`
         );
@@ -35,6 +35,8 @@ const ArtworksCategory = () => {
         setTotalPages(res.data.totalPages);
       } catch (error) {
         console.error("Failed to fetch artworks:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchArtworks();
@@ -56,7 +58,9 @@ const ArtworksCategory = () => {
       <br />
       <br />
 
-      {artworks && artworks.length > 0 ? (
+      {loading ? (
+        <div className="loading-spinner"></div>
+      ) : artworks.length > 0 ? (
         <>
           <div className="masonry-grid">
             {artworks.map((art, index) => (
@@ -103,7 +107,8 @@ const ArtworksCategory = () => {
         </>
       ) : (
         <p className="no-artworks-message">
-          There are no artworks in this category. Will upload some soon. Meanwhile explore other categories.
+          There are no artworks in this category. Will upload some soon.
+          Meanwhile explore other categories.
         </p>
       )}
     </main>
