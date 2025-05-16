@@ -57,7 +57,7 @@ const ArtworksCategory = () => {
       <br />
 
       <div className="masonry-grid">
-        {artworks && Array.isArray(artworks) ? (
+        {artworks && Array.isArray(artworks) && artworks.length > 0 ? (
           artworks.map((art, index) => (
             <div key={art._id} className="masonry-item">
               <img
@@ -72,7 +72,9 @@ const ArtworksCategory = () => {
             </div>
           ))
         ) : (
-          <p>No artworks found.</p>
+          <p>
+            There are no artworks in this category. Will upload some soon. Meanwhile explore other categories.
+          </p>
         )}
       </div>
 
