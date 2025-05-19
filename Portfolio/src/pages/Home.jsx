@@ -93,10 +93,11 @@ const Home = () => {
           </div>
         </div>
         <br />
-        <br />
         <div className="store-button-container">
           <Link to="/artworks" className="store-button">Explore Artworks</Link>
         </div>
+        <br />
+        <br />
       </section>
     </main>
   );
