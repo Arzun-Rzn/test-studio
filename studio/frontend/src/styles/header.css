@@ -1,0 +1,282 @@
+/*Project-K/studio/frontend/src/styles/header.css*/
+
+/* HEADER BASE  */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #ffffff;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 30px 20px;
+  margin-top: 60px;
+  gap: 56px;
+
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+/* SHRINK STATE */
+.header.shrink {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 4px 16px;
+  gap: 0;
+  padding-left: 16px;
+  padding-right: 0px;
+  top: 0%;
+  padding-top: 0%;
+  margin-top: 0%;
+  box-shadow: 0 2px 0px rgba(0, 0, 0, 0.05);
+}
+
+/* LOGO + TITLE */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  text-decoration: none;
+  color: inherit;
+}
+
+/* BIG STATE */
+.logo {
+  width: 228px;
+  height: 120px;
+  border-radius: 10px;
+
+  transition: all 0.2s ease;
+}
+
+.site-title {
+  font-size: 4.5rem;
+  font-weight: bold;
+  margin: 0;
+
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  transition: all 0.2s ease;
+}
+
+/* SMALL (SHRINK) STATE */
+.header.shrink .logo {
+  width: 54px;
+  height: 28px;
+}
+
+.header.shrink .site-title {
+  font-size: 1.2rem;
+}
+
+/* NAV LINKS */
+.nav-links {
+  display: flex;
+  gap: 4rem;
+
+  justify-content: center;
+  align-items: center;
+
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-right: 20px;
+
+  transition: all 0.2s ease;
+}
+
+/* TOP STATE */
+.header:not(.shrink) .nav-links {
+  justify-content: center;
+  width: 100%;
+}
+
+/* SHRINK STATE */
+.header.shrink .nav-links {
+  justify-content: flex-end;
+  gap: 2rem;
+}
+
+.header.shrink .nav-links a{
+  font-size: 14px;
+
+}
+
+/* LINK STYLING */
+.nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  transition: transform 0.2s ease, letter-spacing 0.2s ease;
+}
+
+/* HOVER */
+.nav-links a:hover {
+  transform: scale(1.2);
+}
+
+/* ACTIVE LINK */
+.nav-links a.active {
+
+  border-bottom: 2px solid black;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Title */
+.dropdown-title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+
+.header.shrink .dropdown-title{
+  font-size: 14px;
+}
+
+/* Hover effect */
+.dropdown-title:hover {
+  transform: scale(1.05);
+}
+
+/* Menu */
+.dropdown-menu {
+  position: absolute;
+  top: 90%;
+  left: 0;
+
+  display: none;
+  flex-direction: column;
+
+  background: #ffffff;
+  padding: 10px 0;
+
+  min-width: 140px;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 6px;
+
+  z-index: 1000;
+}
+
+.dropdown-right .dropdown-menu {
+  right: 0;
+  left: -35px;
+}
+
+/* Show on hover */
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+/* Links inside dropdown */
+.dropdown-menu a {
+  padding: 8px 16px;
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+
+  transition: transform 0.3s ease;
+}
+
+/* Hover inside dropdown */
+.dropdown-menu a:hover {
+  transform: scale(1.08);
+  background: rgb(242, 242, 242);
+}
+
+/* SHRINK STATE FIX */
+
+/* dropdown aligns in row */
+.header.shrink .dropdown-menu {
+  top: 90%;
+}
+
+/* RESPONSIVE (MOBILE) */
+@media (max-width: 768px) {
+
+  /* HEADER BASE */
+  .header {
+    padding: 20px 15px;
+    gap: 10px;
+  }
+
+  /* STACK LOGO + TITLE (BIG STATE) */
+  .header-left {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+  }
+
+  /* BIG LOGO */
+  .logo {
+    width: 170px;
+    height: 90px;
+  }
+
+  /* BIG TITLE */
+  .site-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* HIDE NAV LINKS */
+  .nav-links {
+    display: none;
+  }
+
+  /* SHRINK STATE (MOBILE) */
+
+  .header.shrink {
+    flex-direction: row;
+    justify-content: center; /* CENTER everything */
+    align-items: center;
+    margin-top: 0px;
+    margin-bottom: 25px;
+
+    padding: 8px 10px;
+    gap: 0;
+  }
+
+  /* SIDE BY SIDE */
+  .header.shrink .header-left {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* SMALL LOGO */
+  .header.shrink .logo {
+    width: 48px;
+    height: 28px;
+    margin-left: 8px;
+    margin-bottom: 4px;
+  }
+
+  /* SMALL TITLE */
+  .header.shrink .site-title {
+    font-size: 1rem;
+    font-size: 18px;
+    font-weight:700;
+    letter-spacing: 0.6px;
+  }
+
+}
